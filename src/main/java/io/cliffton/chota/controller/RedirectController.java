@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 @Controller
+@RequestMapping("/r")
 public class RedirectController {
 
     @Autowired
@@ -19,6 +20,7 @@ public class RedirectController {
 
     @RequestMapping("/{shorturl}")
     public RedirectView redirect(@PathVariable(value = "shorturl") String shorturl){
+
         String alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         long linkId = 0;
         for(int i = shorturl.length() - 1; i >= 0 ; i--){

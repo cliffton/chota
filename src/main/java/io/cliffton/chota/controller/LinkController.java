@@ -23,7 +23,7 @@ public class LinkController {
     @Autowired
     LinkRepository linkRepository;
 
-    @PostMapping("/notes")
+    @PostMapping("/link")
     public ResponseEntity<Link> createLink(@Valid @RequestBody Link link) {
         String alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         linkRepository.save(link);
@@ -44,7 +44,7 @@ public class LinkController {
 
         link.setShorturl(shorturl);
         linkRepository.save(link);
-
+        link.setShorturl(domain + "r/" + shorturl);
         return ResponseEntity.ok(link);
     }
 }

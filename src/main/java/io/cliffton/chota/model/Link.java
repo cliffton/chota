@@ -17,8 +17,8 @@ import java.util.Date;
 @JsonIgnoreProperties(value = {"createdAt", "updateAt"}, allowGetters = true)
 public class Link {
 
-    @Value("${app.domain}")
-    private String domain;
+//    @Value("${app.domain}")
+//    private String domain;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,7 +56,7 @@ public class Link {
     }
 
     public String getShorturl() {
-        return domain + shorturl;
+        return shorturl;
     }
 
     public void setShorturl(String shorturl) {
