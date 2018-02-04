@@ -3,6 +3,7 @@ package io.cliffton.chota.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,6 +16,9 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updateAt"}, allowGetters = true)
 public class Link {
+
+//    @Value("${app.domain}")
+//    private String domain;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
