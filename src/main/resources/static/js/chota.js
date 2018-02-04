@@ -23,6 +23,7 @@ function copyToClipboard(element) {
 
 $("#chota-copy").click(function (e) {
     copyToClipboard(document.getElementById("chota-url-ref"));
+    $("#chota-copy").text("Copied");
 })
 
 
