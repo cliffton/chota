@@ -24,21 +24,21 @@ public class LinkController {
     LinkRepository linkRepository;
 
     @PostMapping("/notes")
-    public ResponseEntity<Link> createLink(@Valid @RequestBody Link link){
+    public ResponseEntity<Link> createLink(@Valid @RequestBody Link link) {
         String alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         linkRepository.save(link);
         long linkId = link.getId();
         long remainder = 0;
         long base = alpha.length();
         ArrayList<Integer> digits = new ArrayList<>();
-        while (linkId > 0){
+        while (linkId > 0) {
             remainder = linkId % base;
-            digits.add((int)remainder);
+            digits.add((int) remainder);
             linkId = linkId / base;
         }
 
         String shorturl = "";
-        for(int i = digits.size() - 1; i >= 0; i--){
+        for (int i = digits.size() - 1; i >= 0; i--) {
             shorturl += alpha.charAt(digits.get(i));
         }
 
@@ -47,5 +47,4 @@ public class LinkController {
 
         return ResponseEntity.ok(link);
     }
-
 }
