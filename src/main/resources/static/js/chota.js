@@ -29,7 +29,7 @@ $("#chota-copy").click(function (e) {
 
 $("#chota-submit").click(function () {
     // alert("Chota!");
-
+    $("#chota-copy").text("Copy");
     var longurl = $("#longurl").val();
 
     $.ajax({
