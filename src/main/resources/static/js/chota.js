@@ -23,12 +23,13 @@ function copyToClipboard(element) {
 
 $("#chota-copy").click(function (e) {
     copyToClipboard(document.getElementById("chota-url-ref"));
+    $("#chota-copy").text("Copied");
 })
 
 
 $("#chota-submit").click(function () {
     // alert("Chota!");
-
+    $("#chota-copy").text("Copy");
     var longurl = $("#longurl").val();
 
     $.ajax({
