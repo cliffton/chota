@@ -1,10 +1,18 @@
-// $('#chota-form').on('keyup keypress', function(e) {
-//     var keyCode = e.keyCode || e.which;
-//     if (keyCode === 13) {
-//         e.preventDefault();
-//         return false;
-//     }
-// });
+$('#chota-form').on('keyup keypress', function(e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode === 13) {
+        if($("#longurl").val() != ""){
+            $("#chota-submit").click();
+            e.preventDefault();
+            return false;
+        }
+        else{
+            e.preventDefault();
+            return false;
+        }
+
+    }
+});
 
 var successfunction = function (data) {
     $("#chota-url-ref").text(data.shorturl);
