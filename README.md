@@ -1,8 +1,8 @@
 # chota
 URL Shortner
 
-Simple URL Shortner built using Spring Boot.
-*Does not scan all the urls when converting from shortened url to long url instead uses base convertion to find the primary key*
+Simple URL Shortner built using Spring Boot.   
+**Does not scan all the urls when converting from shortened url to long url instead uses base convertion to find the primary key**
 
 ## http://chota.cliffton.io
 
