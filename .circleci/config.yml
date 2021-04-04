@@ -18,13 +18,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Package project
+          name: Install dependencies for project
           command: mvn package
-      - persist_to_workspace:
-          root: .
-          paths:
-            - target/chota-0.0.1-SNAPSHOT.jar
-
 
 workflows:
   test_build_and_deploy:
