@@ -27,4 +27,6 @@ workflows:
     jobs:
       - maven/test:
           executor: jdk8
-      - build
+      - build:
+          requires:
+            - maven/test
