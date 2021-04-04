@@ -38,9 +38,12 @@ workflows:
       - build:
           requires:
             - maven/test
-#      - aws-ecr/build-and-push-image:
-#          requires:
-#            - build
-#          filters:
-#            branches:
-#              only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - build
+          aws-region: AWS_DEFAULT_REGION
+          family: "chota-task"
+          cluster-name: "cliffton-cluster"
+          service-name: "chota-service"
+          container-image-name-updates: "container=chota-container,image-and-tag=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/cliffton:chota-latest"
+          verify-revision-is-deployed: true
