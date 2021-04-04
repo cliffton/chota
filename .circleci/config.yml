@@ -29,3 +29,14 @@ workflows:
       - build:
           requires:
             - maven/test
+      - aws-ecr/build-and-push-image:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: "${AWS_REPO_NAME}"
+          region: AWS_DEFAULT_REGION
+          tag: "chota-latest"
+          extra-build-args: "--build-arg db_url=${DB_URL} --build-arg db_username=${DB_USER} --build-arg db_password=${DB_PASS} --build-arg profile=${SPRING_PROFILE}"
