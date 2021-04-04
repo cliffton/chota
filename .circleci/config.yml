@@ -1,14 +1,42 @@
 version: 2.1
-executors:
-  jdk8:
-    docker:
-      - image: 'cimg/openjdk:8.0'
 
 orbs:
   maven: circleci/maven@1.1
+  aws-ecr: circleci/aws-ecr@6.15.3
+  aws-ecs: circleci/aws-ecs@02.1.0
+
+executors:
+  jdk8:
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies for project
+          command: mvn package
 
 workflows:
-  maven_test:
+  test_build_and_deploy:
     jobs:
       - maven/test:
-         executor: jdk8
+          executor: jdk8
+      - build:
+          requires:
+            - maven/test
+      - aws-ecr/build-and-push-image:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+          account-url: AWS_ECR_ACCOUNT_URL
+          repo: "${AWS_REPO_NAME}"
+          region: AWS_DEFAULT_REGION
+          tag: "chota-latest"
+          extra-build-args: "--build-arg db_url=${DB_URL} --build-arg db_username=${DB_USER} --build-arg db_password=${DB_PASS} --build-arg profile=${SPRING_PROFILE}"
