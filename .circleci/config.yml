@@ -10,6 +10,7 @@ executors:
     docker:
       - image: circleci/openjdk:8-jdk
 
+
 jobs:
   build:
     docker:
@@ -18,8 +19,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies for project
+          name: Package project
           command: mvn package
+      - persist_to_workspace:
+          root: .
+          paths:
+            - target/chota-0.0.1-SNAPSHOT.jar
 
 workflows:
   test_build_and_deploy:
