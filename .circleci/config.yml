@@ -22,7 +22,7 @@ jobs:
           name: Package project
           command: mvn package
       - persist_to_workspace:
-          root: .
+          root: /tmp/
           paths:
             - target/chota-0.0.1-SNAPSHOT.jar
 
