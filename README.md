@@ -13,3 +13,4 @@ Simple URL Shortner built using Spring Boot.
 ## Please set
 - export CHOTA_DB_USER=whateverisname   
 - export CHOTA_DB_PASSWORD=whateverispassword   
+
